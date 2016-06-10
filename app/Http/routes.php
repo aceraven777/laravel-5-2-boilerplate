@@ -11,12 +11,30 @@
 |
 */
 
-Route::group(['middleware' => 'web'], function () {
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'backend'], function () {
     Route::get('/', function () {
-        return view('welcome');
+        return view('admin.welcome');
     });
 
-    Route::auth();
+    // Authentication Routes...
+    $this->get('login', 'Admin\Auth\AuthController@showLoginForm');
+    $this->post('login', 'Admin\Auth\AuthController@login');
+    $this->get('logout', 'Admin\Auth\AuthController@logout');
 
-    Route::get('/home', 'HomeController@index');
+    // Registration Routes...
+    $this->get('register', 'Admin\Auth\AuthController@showRegistrationForm');
+    $this->post('register', 'Admin\Auth\AuthController@register');
+
+    // Password Reset Routes...
+    $this->get('password/reset/{token?}', 'Admin\Auth\PasswordController@showResetForm');
+    $this->post('password/email', 'Admin\Auth\PasswordController@sendResetLinkEmail');
+    $this->post('password/reset', 'Admin\Auth\PasswordController@reset');
 });
