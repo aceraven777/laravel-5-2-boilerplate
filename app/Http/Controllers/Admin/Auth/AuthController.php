@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     protected $loginView = 'admin.auth.login';
     protected $registerView = 'admin.auth.register';
-    protected $linkRequestView = 'admin.auth.passwordsA.email';
+    protected $linkRequestView = 'admin.auth.passwords.email';
     protected $resetView = 'admin.auth.passwords.reset';
     protected $redirectPath = '/backend';
     protected $guard = 'admin';
