@@ -17,11 +17,19 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('user-only', 'UserOnlyController@index');
+});
 
 Route::group(['prefix' => 'backend'], function () {
     Route::get('/', function () {
         return view('admin.welcome');
+    });
+
+    Route::group(['middleware' => 'auth:admin'], function () {
+        Route::get('admin-only', 'Admin\AdminOnlyController@index');
     });
 
     // Authentication Routes...

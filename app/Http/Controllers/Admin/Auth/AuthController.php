@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\AdminUser;
 use Validator;
-use App\Http\Controllers\Controller;
+use App\AdminUser;
+use App\Http\Controllers\AuthBaseController;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+class AuthController extends AuthBaseController
 {
     /**
      * Change view path, redirect path and auth used in admin
@@ -50,6 +50,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        parent::__construct($this->guard);
         $this->middleware('guest:admin', ['except' => 'logout']);
     }
 
