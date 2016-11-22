@@ -5,23 +5,23 @@ namespace App\Http\Controllers;
 class AuthBaseController extends Controller
 {
     /**
-     * Redirect paths of guards
+     * Redirect paths of guards.
      *
      * @var array
      */
     private $guard_auth_redirect = [
         'web' => [
-            'url_segment' => null
+            'url_segment' => null,
         ],
         'admin' => [
-            'url_segment' => 'backend'
+            'url_segment' => 'backend',
         ],
     ];
 
     /**
      * Create a new authentication controller instance.
-     * Make sure the url.intended is valid for current segment
-     * 
+     * Make sure the url.intended is valid for current segment.
+     *
      * E.g.
      *     Assuming that you are logged out.
      *     When you visit '/backend/admin-only', the url.intended is set to '/backend/admin-only'
@@ -34,22 +34,22 @@ class AuthBaseController extends Controller
         $url_intended = session()->get('url.intended');
 
         // If url_intended is not set return early
-        if (! $url_intended) {
+        if (!$url_intended) {
             return;
         }
-        
+
         // Get intended url segments
         $url_intended = str_replace(url('/'), '', $url_intended);
         $url_intended = trim($url_intended, '/');
         $url_intended_segments = explode('/', $url_intended);
 
         // Make sure the first url segment is set
-        if (! isset($url_intended_segments[0])) {
+        if (!isset($url_intended_segments[0])) {
             $url_intended_segments[0] = '';
         }
 
-        // If guard is null, auto set guard to the default defined in auth config        
-        if (! $guard) {
+        // If guard is null, auto set guard to the default defined in auth config
+        if (!$guard) {
             $guard = config('auth.defaults.guard');
         }
 
@@ -61,7 +61,7 @@ class AuthBaseController extends Controller
         $all_url_segments = array_pluck($this->guard_auth_redirect, 'url_segment');
         $all_url_segments = array_unique($all_url_segments);
         $all_url_segments = array_where($all_url_segments, function ($key, $value) {
-            return ! is_null($value);
+            return !is_null($value);
         });
 
         // If guard url segment is null and the url_intended is a segment for other auth guard
@@ -69,7 +69,7 @@ class AuthBaseController extends Controller
         if (is_null($guard_url_segment) && in_array($url_intended_segments[0], $all_url_segments)) {
             session()->forget('url.intended');
         }
-        // If guard url segment is null, this is already good return early  
+        // If guard url segment is null, this is already good return early
         elseif (is_null($guard_url_segment)) {
             return;
         }

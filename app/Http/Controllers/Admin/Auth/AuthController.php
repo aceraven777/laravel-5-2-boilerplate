@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use Validator;
 use App\AdminUser;
 use App\Http\Controllers\AuthBaseController;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator;
 
 class AuthController extends AuthBaseController
 {
     /**
-     * Change view path, redirect path and auth used in admin
+     * Change view path, redirect path and auth used in admin.
      *
      * @var string
      */
@@ -57,14 +57,15 @@ class AuthController extends AuthBaseController
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:admin_users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:admin_users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -72,14 +73,15 @@ class AuthController extends AuthBaseController
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return AdminUser::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
