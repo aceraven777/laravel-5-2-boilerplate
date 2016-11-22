@@ -8,21 +8,22 @@ use Illuminate\Support\Facades\Auth;
 class Authenticate
 {
     /**
-     * Redirect paths of guards
+     * Redirect paths of guards.
      *
      * @var array
      */
     protected $guard_login_redirect = [
-        null => 'login',
+        null    => 'login',
         'admin' => 'backend/login',
     ];
-    
+
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param string|null              $guard
+     *
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)

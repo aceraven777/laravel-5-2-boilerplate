@@ -7,12 +7,11 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
-
     protected $guard = 'admin';
     protected $linkRequestView = 'admin.auth.passwords.email';
     protected $resetView = 'admin.auth.passwords.reset';
     protected $broker = 'admin_users';
-    
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
