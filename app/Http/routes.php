@@ -24,12 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'backend'], function () {
-    Route::get('/', function () {
-        return view('admin.welcome');
-    });
-
     Route::group(['middleware' => 'auth:admin'], function () {
-        Route::get('admin-only', 'Admin\AdminOnlyController@index');
+        Route::get('/', 'Admin\DashboardController@index');
     });
 
     // Authentication Routes...
