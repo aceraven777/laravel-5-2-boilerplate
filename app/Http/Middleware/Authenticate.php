@@ -16,7 +16,7 @@ class Authenticate
         null => 'login',
         'admin' => 'backend/login',
     ];
-    
+
     /**
      * Handle an incoming request.
      *
