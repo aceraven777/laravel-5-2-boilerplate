@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
+     * Redirect paths of guards
+     *
+     * @var array
+     */
+    private $guard_homepage = [
+        'web' => 'home',
+        'admin' => 'backend',
+    ];
+    
+    /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -18,7 +28,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            return redirect($this->guard_homepage[$guard]);
         }
 
         return $next($request);
