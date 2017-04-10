@@ -16,7 +16,7 @@ class RedirectIfAuthenticated
         'web' => 'home',
         'admin' => 'backend',
     ];
-    
+
     /**
      * Handle an incoming request.
      *
