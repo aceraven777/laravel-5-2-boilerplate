@@ -31,3 +31,7 @@ For the admin CMS, I used the AdminLTE v2.3.5 template.
 Download here: https://www.versioneye.com/html/almasaeed2010:adminlte/2.3.5
 
 Install via bower: ```bower install adminlte#2.3.5```
+
+## Donate
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q4XLBV46V3958)
