@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class AuthBaseController extends Controller
 {
     /**
-     * Redirect paths of guards
+     * Redirect paths of guards.
      *
      * @var array
      */
@@ -20,7 +20,7 @@ class AuthBaseController extends Controller
 
     /**
      * Create a new authentication controller instance.
-     * Make sure the url.intended is valid for current segment
+     * Make sure the url.intended is valid for current segment.
      *
      * E.g.
      *     Assuming that you are logged out.

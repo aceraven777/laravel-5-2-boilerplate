@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 class AuthController extends AuthBaseController
 {
     /**
-     * Change view path, redirect path and auth used in admin
+     * Change view path, redirect path and auth used in admin.
      *
      * @var string
      */
